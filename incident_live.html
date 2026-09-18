@@ -1,0 +1,513 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>South Cotabato Shooting Incident Report</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #eef1f5;
+        color: #17202a;
+        line-height: 1.6;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #111827, #263445);
+        color: white;
+        padding: 28px 20px;
+        text-align: center;
+        border-bottom: 5px solid #c62828;
+    }
+
+    .live {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.10);
+        padding: 6px 13px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    .live-dot {
+        width: 8px;
+        height: 8px;
+        background: #e53935;
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(229,57,53,.8);
+    }
+
+    h1 {
+        font-size: clamp(25px, 6vw, 42px);
+        font-weight: 800;
+        letter-spacing: .5px;
+    }
+
+    .subtitle {
+        margin-top: 7px;
+        color: #d8dee7;
+        font-size: 14px;
+    }
+
+    .container {
+        width: min(1100px, 94%);
+        margin: 25px auto 45px;
+    }
+
+    .status-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 6px solid #c62828;
+        box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    }
+
+    .status-title {
+        font-size: 13px;
+        color: #667085;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .status-text {
+        margin-top: 5px;
+        font-size: 21px;
+        font-weight: 800;
+        color: #b71c1c;
+    }
+
+    .location {
+        margin-top: 4px;
+        color: #667085;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: 800;
+        margin: 28px 0 14px;
+        color: #1f2937;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .stat {
+        background: white;
+        border-radius: 16px;
+        padding: 22px 16px;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0,0,0,.07);
+        border-top: 4px solid #34495e;
+    }
+
+    .stat.dead {
+        border-top-color: #b71c1c;
+    }
+
+    .stat.injured {
+        border-top-color: #ef6c00;
+    }
+
+    .stat.suspect {
+        border-top-color: #374151;
+    }
+
+    .number {
+        font-size: 42px;
+        line-height: 1;
+        font-weight: 900;
+        margin-bottom: 9px;
+    }
+
+    .dead .number {
+        color: #b71c1c;
+    }
+
+    .injured .number {
+        color: #ef6c00;
+    }
+
+    .suspect .number {
+        color: #374151;
+    }
+
+    .label {
+        color: #667085;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 16px;
+        padding: 22px;
+        margin-top: 18px;
+        box-shadow: 0 6px 20px rgba(0,0,0,.07);
+    }
+
+    .card h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 23px;
+        border-left: 3px solid #d5dbe3;
+    }
+
+    .event {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .event:last-child {
+        margin-bottom: 0;
+    }
+
+    .event::before {
+        content: "";
+        position: absolute;
+        left: -31px;
+        top: 5px;
+        width: 13px;
+        height: 13px;
+        background: #c62828;
+        border: 3px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #c62828;
+    }
+
+    .event-time {
+        font-size: 12px;
+        color: #c62828;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .event-text {
+        font-size: 14px;
+        color: #424b57;
+        margin-top: 3px;
+    }
+
+    .notice {
+        background: #fff8e1;
+        border: 1px solid #ffe082;
+        border-radius: 14px;
+        padding: 18px;
+        margin-top: 18px;
+    }
+
+    .notice strong {
+        color: #8d6e00;
+    }
+
+    .update {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 18px;
+        margin-top: 18px;
+    }
+
+    .update p {
+        font-size: 14px;
+        color: #475467;
+        margin-bottom: 9px;
+    }
+
+    .source {
+        margin-top: 22px;
+        font-size: 12px;
+        color: #667085;
+        line-height: 1.7;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 24px 15px;
+        background: #111827;
+        color: #aeb7c4;
+        font-size: 12px;
+    }
+
+    .footer strong {
+        color: white;
+    }
+
+    @media (max-width: 700px) {
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .stat {
+            padding: 20px;
+        }
+
+        .number {
+            font-size: 38px;
+        }
+
+        .card,
+        .status-card {
+            padding: 18px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     SOUTH COTABATO SHOOTING INCIDENT REPORT
+     ALL NUMBERS BELOW ARE CODE-EDITABLE.
+     DO NOT EDIT FROM THE WEBPAGE.
+========================================================= -->
+
+<header class="header">
+
+    <div class="live">
+        <span class="live-dot"></span>
+        INCIDENT REPORT
+    </div>
+
+    <h1>SOUTH COTABATO SHOOTING</h1>
+
+    <div class="subtitle">
+        Latest Incident Information &amp; Situation Report
+    </div>
+
+</header>
+
+<main class="container">
+
+    <!-- CURRENT STATUS -->
+    <section class="status-card">
+
+        <div class="status-title">
+            Current Status
+        </div>
+
+        <div class="status-text">
+            INVESTIGATION ONGOING
+        </div>
+
+        <div class="location">
+            Banga National High School • Banga, South Cotabato
+        </div>
+
+    </section>
+
+
+    <!-- CASUALTY FIGURES -->
+    <div class="section-title">
+        Casualty Figures
+    </div>
+
+    <section class="stats">
+
+        <div class="stat dead">
+            <!-- EDIT NUMBER HERE -->
+            <div class="number">3</div>
+            <div class="label">Confirmed Dead</div>
+        </div>
+
+        <div class="stat injured">
+            <!-- EDIT NUMBER HERE -->
+            <div class="number">8</div>
+            <div class="label">Reported Injured</div>
+        </div>
+
+        <div class="stat suspect">
+            <!-- EDIT NUMBER HERE -->
+            <div class="number">1</div>
+            <div class="label">Suspected Shooter Dead</div>
+        </div>
+
+    </section>
+
+
+    <!-- INCIDENT DETAILS -->
+    <div class="section-title">
+        Incident Details
+    </div>
+
+    <section class="card">
+
+        <h3>What Happened</h3>
+
+        <p>
+            A shooting incident was reported at Banga National High School
+            in Banga, South Cotabato. Authorities responded to the incident
+            and an investigation is ongoing to establish the complete
+            circumstances surrounding the shooting.
+        </p>
+
+    </section>
+
+
+    <!-- TIMELINE -->
+    <section class="card">
+
+        <h3>Incident Timeline</h3>
+
+        <div class="timeline">
+
+            <div class="event">
+                <div class="event-time">
+                    Approximately 1:15–1:30 PM
+                </div>
+
+                <div class="event-text">
+                    Shooting incident reported inside Banga National High School.
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-time">
+                    Emergency Response
+                </div>
+
+                <div class="event-text">
+                    Authorities and emergency responders attended to the
+                    affected students and secured the area.
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-time">
+                    Investigation
+                </div>
+
+                <div class="event-text">
+                    Authorities began investigating the circumstances,
+                    firearm access, and other factors connected to the incident.
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SCHOOL STATUS -->
+    <section class="card">
+
+        <h3>School &amp; Community Response</h3>
+
+        <p>
+            Classes in the affected area were suspended as authorities and
+            government agencies coordinated response and support for students,
+            families, and school personnel.
+        </p>
+
+    </section>
+
+
+    <!-- PSYCHOSOCIAL SUPPORT -->
+    <section class="card">
+
+        <h3>Support for Affected Students</h3>
+
+        <p>
+            Government agencies and local authorities are coordinating
+            psychological first aid and psychosocial support for individuals
+            affected by the incident.
+        </p>
+
+    </section>
+
+
+    <!-- IMPORTANT NOTICE -->
+    <section class="notice">
+
+        <strong>IMPORTANT:</strong><br>
+
+        Casualty figures may change as authorities continue verification
+        and identification. Conflicting preliminary figures have been
+        reported, therefore this dashboard should be updated only when
+        an official or verified report becomes available.
+
+    </section>
+
+
+    <!-- LATEST UPDATE -->
+    <section class="card">
+
+        <h3>Latest Update</h3>
+
+        <div class="update">
+
+            <p>
+                <strong>September 18, 2026</strong>
+            </p>
+
+            <p>
+                Authorities continue to investigate the shooting incident
+                and verify casualty information.
+            </p>
+
+            <p>
+                Further official information is expected as the investigation
+                progresses.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOURCES -->
+    <section class="source">
+
+        <strong>Sources / Reference:</strong><br>
+
+        Philippine News Agency (PNA)<br>
+        Department of Education (DepEd)<br>
+        Department of Social Welfare and Development (DSWD)<br>
+        Philippine National Police (PNP)<br>
+        Reuters<br>
+        GMA News
+
+        <br><br>
+
+        <strong>Disclaimer:</strong>
+        This page is an informational incident dashboard.
+        Information and casualty figures are subject to official
+        verification and may change as authorities release new updates.
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <strong>SOUTH COTABATO INCIDENT REPORT</strong><br>
+    Information Dashboard • September 18, 2026
+
+</footer>
+
+</body>
+</html>
